@@ -92,3 +92,107 @@ Las variables const tienen reglas como:
   let resultado = [...carrito,prod1]    //push
   let resultado = [prod2,...resultado]  //unshift
   ``` 
+  - `array.pop()` elimina el ultimo del arreglo
+  - `array.splice(desde,cantidad)` elimina la cantidad de elementos que le diga, desde el index que le dga
+  - destructuring de arrays = se debe hacer con las pos posiciones
+  ```
+  const numeros = [1,3,5,7,9,11,13]
+  const [first,second,third,,fifth,...resto] = numeros
+  //second equivaldra a 3
+  //fifth equivaldra a 9
+  //resto equivaldra a un nuevo array con los sobrantes
+  ```
+  - `array.forEach((elemento)=>{}` no retorna nada
+  - `array.map((elemento)=>{}` si retorna el elemento en su ultimo estado
+### Funciones
+  #### funcion declarativa
+  - `function miFuncion(parametro){mi cod}`
+  #### funcion de expresion
+  - `const variable = function miFuncion(parametro){mi cod}`
+  diferencias? la funcion de expresion no se declara en la primera lectura, gracias al hoisting, la funcion declarativa se lee y se registra
+- funcion vs metodo:
+  funcion = nombreFuncion()
+  metodo = .miMetodo()
+- los argumentos son datos que se le dan a la funcion.
+- para declarar argumentos por default se le declara en la funcion `parametro = "opcional"`
+- las propiedades y metodos se agregan como una pareja de un diccionario siempre, por lo que un metodo es `metodo : function(){}`
+- las arrow functions tiene sintaxis = `(parametros)=>{}` y son mas cortas y bonitas de usar  
+  - si es solo un parametro, no se necesitan los parentesis
+  - cuando el cuerpo es solo una linea, el return es implicito y se puede prescindir de los parentesis
+  - para un objeto, le podemos agregar setter y getter haciendo funciones dentro del obj pero en vez de usar function, usamos set o get
+    ```
+    set cancion(valor){
+      this.propiedad = valor 
+    }
+    ```
+### estructuras de control
+- if 
+  son los if normales de toda la vida
+  pueden tener su respectivo `else{}` o `else if(){}`
+- switch case
+  Es el sswitch case de toda la vida, usa el `case` y el `default` y `break`
+- El operador ternario en js tiene como sintaxis : `condicion ? siVerdadero : siFalso`
+- for loop
+  el for loop tiene 3 partes, el index inicializado, la condicon y la iteracion. Su ejecucion se puede ver modificado por un `break` que se sale de todo el loop, o por un `continue` que se salta hasta la siguiente iteracion
+- while es el while de toda la vida
+- Do while tiene la estructura: `do{}while();` y su diferencia es que hara siempre 1 vez el codigo dentro del bloque del do
+- `miArray.forEach((varParaElemento,varParaIndex)=>{})` El propio forEach es un metodo de los arrays ideal para recorrer arreglos
+- `miArray.map((varParaElemento,varParaIndex)=>{})` map crea un nuevo arreglo y lo retorna
+- `for(varParaElemento of miArrayDeElementos){}` Esto es un for of y es una version recortada del for comun
+- `for(varParaIndice in miArrayDeElementos){}` Esto es un for in e itera sobre arreglos
+
+### metodos de array
+- `.includes("verifica")` verifica que un elemento exista en un array
+  - `.some(objeto => {return objeto.nombre === "olla"})` verifica que un elemento exista **en un arreglo de objetos** tambien se puede usar con arrays comunes añadiendo esta condicion al final
+  - `findIndex(elemento => elemento === "Este es el que busco")` Este metodo usa la condicion que retorna para devolver el indice del elemento encontrado (-1 si no se encuentra)  _solo devuelve el primero encontrado_
+  - `.reduce((acumulado,elementoActual)=> acumulado + elementoActual , 0)` Reduce toma una lista y la comprime a un solo valor. Toma dos parametros, siendo el primero una funcion que toma, a su vez, dos parametros que son el acumulado y el elemento actual. lo que retorne este bloque de codigo, lo guardara en acumulado. Acumulado, se inicia en el valor que se le pase en el segundo parametro de la funcion reduce.
+  - `.filter(elemento => elemento > 5)` devuelve los elementos en un arreglo que segun la funcion, devuelva true
+  - `.find(elemento =>  elemento > 5)`  devuelve el **primer elemento** que segun la funcion, devuelva true
+  - `.every(elemento =>  elemento > 5)`  devuelve un booleano con base a que **todos los elementos** cumplan la funcion de la funcion
+  - `.concat(array)`suma el array con el array pasado como argumento. 
+    - `nuevoArray[...array,..."hola"]` Se puede lograr lo mismo con el spread operator (los tres puntos) ya que clona los elementos de un array y los pone. **Tener en cuenta** que la cadena hola se agregara letra por letra por tener el spread operator.
+### DOM
+  - Document object model
+  - `document.getElementsByClass("nombre-de-la-clase")` seleccionar elementos por su clase
+  - `document.getElementById("id-del-elemento")` busca el primer elemento que coincida con el id
+  - `document.querySelector(".clase-padre #id-del-hijo")` busca el primer elemento que coincida con los selectores
+  - `document.querySelectorAll(".clase-padre #id-del-hijo")` retorna todos los elemento que coincidan con los selectores
+  -  para modificar el texto de algo, hay tres opciones:
+    ```
+    .innerText      // no encuentra si visibility esta en hidden 
+    .textContent    // si lo encuentra
+    .innerHTML      // se trae todo el html
+    ```
+
+  - se puede modificar una img cambiando su propiedad source
+  - para cambiar el estilo de un elemento, se puede acceder a su propiedad style y luego a lo que queramos cambiar
+  - tambien podemos usar classList con el cual podemos add/remove/toggle
+  - `elemento.children` retorna la cantidad de hijos que tiene un elemento
+  - `elementoPadre.removeChild(elementoPadre.children[2])` remueve el hijo que este en el indice especificado
+  - `document.createElement("div")` crea un elemento
+  - `elementoPadre.appendChild(elementoCreado)` agrega un elemento ya creado 
+
+### eventos
+  - `DOMContentLoaded` es el nombre del evento para cuando el html este listo
+  #### Eventos con el mouse
+    - `click` es el nombre del evento para cualquier click
+    - `mouseenter` es el nombre del evento para el mouse por encima
+    - `mouseout` es el nombre del evento para el mouse entra y sale
+    - `dbclick` es para dos clicks
+  #### Eventos con el teclado
+    - `keydown` se presiona una tecla
+    - `blur` se enfoca/escribe y luego se deja de escribir o se desenfoca
+    - `copy` se copia
+    - `paste` se pega
+    - `input` cuando se cambia algo
+  #### Evento submit
+    - `submit` es el evento de cuando se envia
+    - se puede utilizar `nombreVariableEvento.preventDefault()` para evitar que haga lo que deberia
+  #### Eventos scroll
+    - `scroll` cuando sea que se haga scroll
+    - para acceder a la poscion en y, se usa `window.scrollY` que devuleve la cantidad de px
+    - `getBoundingClientRect()` Esta obtiene altura, ancho y a cuanta distancia esta el elemento 
+  #### Event bubbling
+    - Es cuando se llama un evento y desencadena cosas que no esperabamos por ejemplo, agregar un event listener a un elemento padre y que un elemento hijo tambien lo use
+    - `e.stopProoagation()` Este para la propagacion del elemento
+    - podemos utilizar _delegation_ si lo que hacemos es: tomar el evento y obtener la lista de clases del target con `e.target.classList` y ya con esta lista de clases, podemos actuar en consecuencia   
