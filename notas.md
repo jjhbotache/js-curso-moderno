@@ -196,3 +196,31 @@ Las variables const tienen reglas como:
     - Es cuando se llama un evento y desencadena cosas que no esperabamos por ejemplo, agregar un event listener a un elemento padre y que un elemento hijo tambien lo use
     - `e.stopProoagation()` Este para la propagacion del elemento
     - podemos utilizar _delegation_ si lo que hacemos es: tomar el evento y obtener la lista de clases del target con `e.target.classList` y ya con esta lista de clases, podemos actuar en consecuencia   
+
+### local storage
+  - se usa el obj `localStorage` o `sessionEstorage` el cual perdura aunque reinicies el pc
+  - `.setItem()`es un metodo que recibe 2 parametros que son la clave y valor de lo que se quiere guardar en local
+  - todo lo que se guarda, son strings
+  - `JSON.stringify` es capaz de convertir listas u objetos a un string
+  - `.getItem()` recibe un parametro que es la clave, y devuelve null si no existe
+  - `JSON.parse()` es una funcion que convierte un string a ya sea un arreglo u objeto
+  - `.removeItem()` solo requiere la clave para eliminar lo almacenado
+  - para actualizar se sobreescribe
+  - `.clear()` es un metodo que limpia todo 
+
+### fechas
+  - son objetos, que se crean, istanciandolas como `new Date()`
+  - si se les pasa un str para crear una fecha con el dia que le diremos, se sigue el formato _mm-dd-aaaa_
+  - del objeto que creemos de fecha, podemos obtener año,mes,dia,hora,minutos etc con `.getFullYear` `.getMonth` `.getDay` `.getMinutes` `.getHours` 
+  - `.getTime` obtiene los milisegundos transcurridos entre 1970 y ahora. Se puede usar `Date.now()` tambien
+  - los metodos, tambien tienen su `set` para modificar la fecha
+  
+### prototypes
+  - son funciones que crean objetos, reciben argumentos para sus propiedades y se usa this para referirse a si mismo
+  - se instacia con `new`
+  - para agregarun metodo, se debe acceder a el y solo ahi se agrega una funcionn: `MiClase.prototype.miMetodo = function(){}`
+  - **DEBE** ser con `function` ya que esta busca en el objeto actuak mientras que una _arrow function_ busca en el objeto global
+  -  se puede heradar, mandndo a llamar direcatametne a la clase, usando `.call` un metodo que recibe como primer parametro el valor de `this` y el resto, son parametros de la funcion: `MyClase.call(this,arg1,arg2)`
+  -  `Object.create()` crea un obj apartir de otro,por lo que para heredar metodos, se
+     -  accede al prototype del objeto que heredó
+     -  se define e el prototipo como un onjeto que se crea, a partir del prototipo de la clase a heredad: `ClaseHija.prototype = Object.create(ClasePadre.prototype)`
