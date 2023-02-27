@@ -224,3 +224,44 @@ Las variables const tienen reglas como:
   -  `Object.create()` crea un obj apartir de otro,por lo que para heredar metodos, se
      -  accede al prototype del objeto que heredó
      -  se define e el prototipo como un onjeto que se crea, a partir del prototipo de la clase a heredad: `ClaseHija.prototype = Object.create(ClasePadre.prototype)`
+### POO
+- Es simplemente una mejora de la sintaxis de un prototype
+- `class MyClass{}` de esta manera se crea una clase
+- `constructor(){}` es lo que se usa como constructor de la clase que puede recibir parametros *notese que no se usa function*
+- `myMethod(){}` esta es la manera en la que se agregan metodos
+- Existen algo que se llama propiedades estáticas las cuales son propiedades que pertenecen a la clase, se llaman directamente a la clase se usa `estatic` antes del metodo o atributo de clase
+- Para heredar se usa `extends` en la creacion de de la clase `Class SonClass extends ParentClass{}` Luego se Deberá usar el método `super()` para referirse al metodo de la clase padre incluyendo el constructor
+- Se puede sobreescribir un método sí simplemente en la clase hija se escribe otro método que se llame exactamente igual
+- Para privatizar una propiedad se le debe definir con un # hoy justo antes de su nombre `#miPropiedad`
+
+### set, maps y symbols
+- Todos son tipos de objetos por lo tanto se crean con new
+#### sets
+- los sets son listas de valores sin duplicados
+- el metodo `.add` agrega el valor pasado como parametro
+- `.size` devuelve su longitud
+- `.has` devulve si tiene lo pasado en el parametro
+- `.delete` para eliminar un elemento
+- `.clear` lo vacia
+- No tienen índex y si le preguntas por el índex te va a devolver el valor
+- existe algo que se llama `WeakSet()` Al que solamente se le pueden agregar objetos
+- Los widget no son operables
+### maps
+- Son objetos que almacenan de la manera clave de valor Solo que aquí la clave y el valor pueden ser cualquier tipo de dato
+-  `.set` settea una pareja
+-  `.has` devuelve si hay o no una clave
+-  `.get` obtiene el valor de una clave
+-  `.clear` lo limpia
+-  Son iterables
+-  Aquí también existen los weak  maps
+-  No se puede acceder a su longitud
+-  No son iterables
+### symbols
+- Estás creando variables únicas 
+- Las propiedades que se agregarán objeto que son de tipo símbolos no son iterables
+- `const variable = Symbol();`
+
+### generadores
+- Se crean agregando un * antes de la declaración  del nombre de una función
+- En vez de `return` usa `yield`
+- Cuando se usa el método next De la función generadora ésta devuelve 2 valores: `value` & `done` Y en este punto la función generadora se queda dormida para cuando se vuelva a llamar, seguir con el proximo yield
